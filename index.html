@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booksy - Student Book Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <h2 class="nav__logo">BOOKSY</h2>
+            </div>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#" class="nav__link" data-page="home">Home</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link" data-page="buy">Buy Books</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link" data-page="sell">Sell Books</a></li>
+                    <li class="nav__item nav__auth">
+                        <a href="#" class="nav__link" data-page="login" id="auth-link">Login</a>
+                    </li>
+                    <li class="nav__item nav__profile hidden">
+                        <a href="#" class="nav__link" data-page="profile">Profile</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link" data-page="contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav__toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Page -->
+        <div class="page active" id="home-page">
+            <section class="hero">
+                <div class="hero__container container">
+                    <div class="hero__content">
+                        <h1 class="hero__title">Buy & Sell Books with Students</h1>
+                        <p class="hero__description">The ultimate marketplace for students to trade textbooks, novels, and study materials at affordable prices.</p>
+                        <div class="hero__buttons">
+                            <button class="btn btn--primary" data-page="buy">Browse Books</button>
+                            <button class="btn btn--outline" data-page="sell">Sell Your Books</button>
+                        </div>
+                    </div>
+                    <div class="hero__image">
+                        <div class="hero__books">📚</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="categories">
+                <div class="container">
+                    <h2 class="section__title">Browse Categories</h2>
+                    <div class="categories__grid" id="categories-grid">
+                        <!-- Categories will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured">
+                <div class="container">
+                    <h2 class="section__title">Featured Books</h2>
+                    <div class="books__grid" id="featured-books">
+                        <!-- Featured books will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Buy Books Page -->
+        <div class="page" id="buy-page">
+            <section class="buy__section">
+                <div class="container">
+                    <h1 class="page__title">Buy Books</h1>
+                    
+                    <div class="search__container">
+                        <input type="text" class="form-control search__input" placeholder="Search books, authors, subjects..." id="search-input">
+                        <button class="btn btn--primary search__btn" id="search-btn">Search</button>
+                    </div>
+
+                    <div class="filters__container">
+                        <select class="form-control filter__select" id="category-filter">
+                            <option value="">All Categories</option>
+                        </select>
+                        <select class="form-control filter__select" id="condition-filter">
+                            <option value="">All Conditions</option>
+                            <option value="Excellent">Excellent</option>
+                            <option value="Good">Good</option>
+                            <option value="Fair">Fair</option>
+                        </select>
+                        <select class="form-control filter__select" id="sort-filter">
+                            <option value="latest">Latest First</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+
+                    <div class="books__grid" id="books-grid">
+                        <!-- Books will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sell Books Page -->
+        <div class="page" id="sell-page">
+            <section class="sell__section">
+                <div class="container">
+                    <h1 class="page__title">Sell Your Books</h1>
+                    <div class="sell__container">
+                        <form class="sell__form" id="sell-form">
+                            <div class="form-group">
+                                <label class="form-label">Book Title *</label>
+                                <input type="text" class="form-control" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Author *</label>
+                                <input type="text" class="form-control" name="author" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Your Price (₹) *</label>
+                                    <input type="number" class="form-control" name="price" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Original Price (₹)</label>
+                                    <input type="number" class="form-control" name="original_price">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Category *</label>
+                                    <select class="form-control" name="category" required>
+                                        <option value="">Select Category</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Condition *</label>
+                                    <select class="form-control" name="condition" required>
+                                        <option value="">Select Condition</option>
+                                        <option value="Excellent">Excellent</option>
+                                        <option value="Good">Good</option>
+                                        <option value="Fair">Fair</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Description *</label>
+                                <textarea class="form-control" name="description" rows="4" required></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Your Name *</label>
+                                    <input type="text" class="form-control" name="seller" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Location *</label>
+                                    <input type="text" class="form-control" name="location" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">WhatsApp Number *</label>
+                                <input type="tel" class="form-control" name="phone" required>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full-width">List Your Book</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Login Page -->
+        <div class="page" id="login-page">
+            <section class="auth__section">
+                <div class="container">
+                    <div class="auth__container">
+                        <div class="auth__card">
+                            <h2 class="auth__title">Login to Booksy</h2>
+                            <form class="auth__form" id="login-form">
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="password" required>
+                                </div>
+                                <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                            </form>
+                            <div class="auth__demo">
+                                <p>Demo Account:</p>
+                                <p><strong>Email:</strong> demo@booksy.com</p>
+                                <p><strong>Password:</strong> demo123</p>
+                            </div>
+                            <p class="auth__switch">
+                                Don't have an account? 
+                                <a href="#" data-page="register">Register here</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Register Page -->
+        <div class="page" id="register-page">
+            <section class="auth__section">
+                <div class="container">
+                    <div class="auth__container">
+                        <div class="auth__card">
+                            <h2 class="auth__title">Register for Booksy</h2>
+                            <form class="auth__form" id="register-form">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Location</label>
+                                    <input type="text" class="form-control" name="location" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" name="confirmPassword" required>
+                                </div>
+                                <button type="submit" class="btn btn--primary btn--full-width">Register</button>
+                            </form>
+                            <p class="auth__switch">
+                                Already have an account? 
+                                <a href="#" data-page="login">Login here</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Profile Page -->
+        <div class="page" id="profile-page">
+            <section class="profile__section">
+                <div class="container">
+                    <h1 class="page__title">My Profile</h1>
+                    <div class="profile__container">
+                        <div class="profile__info">
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Profile Information</h3>
+                                    <div id="profile-details">
+                                        <!-- Profile details will be populated by JavaScript -->
+                                    </div>
+                                    <button class="btn btn--outline" id="logout-btn">Logout</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile__books">
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>My Listed Books</h3>
+                                    <div id="my-books">
+                                        <!-- User's books will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Page -->
+        <div class="page" id="contact-page">
+            <section class="contact__section">
+                <div class="container">
+                    <h1 class="page__title">Contact Us</h1>
+                    <div class="contact__container">
+                        <div class="contact__form">
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Get in Touch</h3>
+                                    <form id="contact-form">
+                                        <div class="form-group">
+                                            <label class="form-label">Name</label>
+                                            <input type="text" class="form-control" name="name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" name="email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Subject</label>
+                                            <input type="text" class="form-control" name="subject" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Message</label>
+                                            <textarea class="form-control" name="message" rows="5" required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn--primary">Send Message</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact__info">
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>FAQ</h3>
+                                    <div class="faq__item">
+                                        <h4>How do I sell my books?</h4>
+                                        <p>Go to the "Sell Books" page, fill out the form with your book details, and submit. Your book will be listed for other students to find.</p>
+                                    </div>
+                                    <div class="faq__item">
+                                        <h4>How do I contact a seller?</h4>
+                                        <p>Each book listing has a "Contact Seller" button that opens WhatsApp with the seller's number for easy communication.</p>
+                                    </div>
+                                    <div class="faq__item">
+                                        <h4>Is registration required?</h4>
+                                        <p>Registration is only required to sell books. You can browse and search books without creating an account.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Book Details Modal -->
+    <div class="modal hidden" id="book-modal">
+        <div class="modal__overlay">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <h3 class="modal__title">Book Details</h3>
+                    <button class="modal__close">&times;</button>
+                </div>
+                <div class="modal__body" id="modal-body">
+                    <!-- Book details will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h3>BOOKSY</h3>
+                    <p>The ultimate student book marketplace</p>
+                </div>
+                <div class="footer__links">
+                    <p>&copy; 2025 Booksy. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
